@@ -1,0 +1,35 @@
+# Copyright (c) 2025 Golioth, Inc.
+# SPDX-License-Identifier: Apache-2.0
+
+manifest:
+  version: 0.8
+
+  projects:
+
+# Temporarily calling out Zephyr first to pull in 4.1.0 in order to use LinkServer and nxp_hal
+
+    - name: zephyr
+      revision: v4.1.0
+      url: https://github.com/zephyrproject-rtos/zephyr
+      west-commands: scripts/west-commands.yml
+      import:
+        path-prefix: deps
+        name-allowlist:
+          - zephyr
+          - cmsis
+          - hal_nordic
+          - hal_nxp
+          - mbedtls
+          - mcuboot
+          - segger
+          - tfm-mcuboot
+          - tinycrypt
+          - trusted-firmware-m
+          - zcbor
+          - littlefs
+    - name: pouch
+      path: deps/pouch
+      revision: v0.1.0
+      west-commands: scripts/west-commands.yml
+      url: https://github.com/golioth/pouch/
+      import: true
